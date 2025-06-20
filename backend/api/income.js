@@ -1,5 +1,5 @@
-import { db } from "../api/db.js";
-import Income from "../api/IncomeModel.js";
+import { db } from "../db/db.js";
+import Income from "../models/IncomeModel.js";
 
 export default async function handler(req, res) {
   await db();

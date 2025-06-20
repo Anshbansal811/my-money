@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 let isConnected = false;
 
@@ -14,4 +14,4 @@ const db = async () => {
   }
 };
 
-module.exports = { db };
+export default db;

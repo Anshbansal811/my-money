@@ -1,6 +1,6 @@
-import { db } from "../api/db.js";
-import Expense from "../api/ExpenseModel.js";
-import Income from "../api/IncomeModel.js";
+import { db } from "../db/db.js";
+import Expense from "../models/ExpenseModel.js";
+import Income from "../models/IncomeModel.js";
 import ExcelJS from "exceljs";
 
 export default async function handler(req, res) {
