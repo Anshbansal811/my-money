@@ -1,13 +1,22 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const db = async () => {
-    try {
-        mongoose.set('strictQuery', false)
-        await mongoose.connect(process.env.MONGO_URL)
-        console.log('Db Connected')
-    } catch (error) {
-        console.log('DB Connection Error');
-    }
+let cached = global.mongoose;
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
 }
 
-module.exports = {db}
+async function dbConnect() {
+  if (cached.conn) return cached.conn;
+  if (!cached.promise) {
+    mongoose.set("strictQuery", false);
+    cached.promise = mongoose
+      .connect(process.env.MONGO_URL)
+      .then((mongoose) => {
+        return mongoose;
+      });
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
+
+module.exports = dbConnect;
