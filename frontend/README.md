@@ -26,12 +26,3 @@ Your app is ready to be deployed!
 information.
 
 ### `npm run eject`
-
-# Deployment on Vercel
-
-- The frontend is deployed as a static site.
-- The backend API is now served via Vercel serverless functions under `/api/v1/`.
-- All API calls use relative URLs (e.g., `/api/v1/add-income`).
-- Set your environment variables (like `MONGO_URL`) in the Vercel dashboard.
-
----
