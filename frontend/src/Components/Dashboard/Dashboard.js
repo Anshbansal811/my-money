@@ -26,7 +26,7 @@ function Dashboard() {
   const handleDownloadCSV = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/download-expenses-csv"
+        "https://my-money-production.up.railway.app/api/v1/download-expenses-csv"
       );
       if (!response.ok) throw new Error("Failed to download statement");
       const blob = await response.blob();
