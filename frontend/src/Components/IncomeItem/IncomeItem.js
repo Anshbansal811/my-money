@@ -89,8 +89,22 @@ function IncomeItem({
         {type === "expense" ? expenseCatIcon() : categoryIcon()}
       </div>
       <div className="content">
-        <h5>{title}</h5>
-        <div className="inner-content">
+        <div className="top-row">
+          <h5>{title}</h5>
+          <div className="btn-con">
+            <Button
+              icon={trash}
+              bPad={"1rem"}
+              bRad={"50%"}
+              bg={"var(--primary-color"}
+              color={"#fff"}
+              iColor={"#fff"}
+              hColor={"var(--color-green)"}
+              onClick={() => deleteItem(id)}
+            />
+          </div>
+        </div>
+        <div className="details-row">
           <div className="text">
             <p>
               {dollar} {amount}
@@ -105,18 +119,6 @@ function IncomeItem({
             <p>
               <strong>Category:</strong> {category}
             </p>
-          </div>
-          <div className="btn-con">
-            <Button
-              icon={trash}
-              bPad={"1rem"}
-              bRad={"50%"}
-              bg={"var(--primary-color"}
-              color={"#fff"}
-              iColor={"#fff"}
-              hColor={"var(--color-green)"}
-              onClick={() => deleteItem(id)}
-            />
           </div>
         </div>
       </div>
@@ -136,6 +138,7 @@ const IncomeItemStyled = styled.div`
   gap: 1rem;
   width: 100%;
   color: #222260;
+  position: relative;
   .icon {
     width: 80px;
     height: 80px;
@@ -155,38 +158,85 @@ const IncomeItemStyled = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
-    h5 {
-      font-size: 1.3rem;
-      padding-left: 2rem;
-      position: relative;
-      &::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0.8rem;
-        height: 0.8rem;
-        border-radius: 50%;
-        background: ${(props) => props.indicator};
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      h5 {
+        font-size: 1.3rem;
+        padding-left: 2rem;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 0.8rem;
+          height: 0.8rem;
+          border-radius: 50%;
+          background: ${(props) => props.indicator};
+        }
+      }
+      .btn-con {
+        margin-left: 1rem;
+        position: static;
       }
     }
-
-    .inner-content {
+    .details-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      .text {
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      p {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
-        p {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: var(--primary-color);
-          opacity: 0.8;
+        gap: 0.5rem;
+        color: var(--primary-color);
+        opacity: 0.8;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7rem;
+    .icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.5rem;
+    }
+    .content {
+      .top-row {
+        flex-direction: row;
+        align-items: center;
+        h5 {
+          font-size: 1rem;
+          padding-left: 1.2rem;
         }
+      }
+      .details-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        p {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    padding: 0.4rem;
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+    .content {
+      .top-row h5 {
+        font-size: 0.9rem;
       }
     }
   }
