@@ -3,15 +3,18 @@ import styled from "styled-components";
 import avatar from "../../img/avatar.png";
 import { signout } from "../../utils/Icons";
 import { menuItems } from "../../utils/menuItems";
+import { useGlobalContext } from "../../context/globalContext";
 
 function Navigation({ active, setActive }) {
+  const { totalBalance } = useGlobalContext();
+
   return (
     <NavStyled>
       <div className="user-con">
         <img src={avatar} alt="" />
         <div className="text">
           <h2>Mike</h2>
-          <p>Balance</p>
+          <p>Current Balance: ₹{totalBalance()}</p>
         </div>
       </div>
       <ul className="menu-items">

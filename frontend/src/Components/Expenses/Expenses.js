@@ -41,7 +41,7 @@ function Expenses() {
       <InnerLayout>
         <h1>Expenses</h1>
         <h2 className="total-income">
-          Total Expense: <span>${totalExpenses()}</span>
+          Total Expense: <span>₹{totalExpenses()}</span>
         </h2>
         <div className="income-content">
           <div className="form-container">

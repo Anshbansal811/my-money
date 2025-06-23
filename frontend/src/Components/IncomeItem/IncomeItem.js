@@ -9,7 +9,6 @@ import {
   circle,
   clothing,
   comment,
-  dollar,
   food,
   freelance,
   medical,
@@ -106,9 +105,7 @@ function IncomeItem({
         </div>
         <div className="details-row">
           <div className="text">
-            <p>
-              {dollar} {amount}
-            </p>
+            <p>₹{amount}</p>
             <p>
               {calender} {dateFormat(date)}
             </p>
