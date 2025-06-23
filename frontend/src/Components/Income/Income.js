@@ -85,8 +85,7 @@ const IncomeStyled = styled.div`
       min-width: 250px;
     }
     .incomes {
-      flex: 2;
-      min-width: 0;
+      flex: 1;
     }
     @media (max-width: 900px) {
       flex-direction: column;

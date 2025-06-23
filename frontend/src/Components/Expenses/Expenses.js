@@ -94,12 +94,38 @@ const ExpenseStyled = styled.div`
       font-weight: 800;
       color: var(--color-green);
     }
+    @media (max-width: 600px) {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      span {
+        font-size: 1.5rem;
+      }
+    }
   }
   .income-content {
     display: flex;
     gap: 2rem;
+    .form-container {
+      flex: 1;
+      min-width: 250px;
+    }
     .incomes {
       flex: 1;
+    }
+    @media (max-width: 900px) {
+      flex-direction: column;
+      gap: 1rem;
+      .form-container,
+      .incomes {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+    .income-content {
+      gap: 0.5rem;
     }
   }
 `;
