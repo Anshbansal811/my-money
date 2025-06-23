@@ -66,17 +66,19 @@ function Dashboard() {
           <div className="chart-con">
             <Chart />
             <div className="amount-con">
-              <div className="income">
-                <h2>Total Income</h2>
-                <p>
-                  {dollar} {totalIncome()}
-                </p>
-              </div>
-              <div className="expense">
-                <h2>Total Expense</h2>
-                <p>
-                  {dollar} {totalExpenses()}
-                </p>
+              <div className="row">
+                <div className="income">
+                  <h2>Total Income</h2>
+                  <p>
+                    {dollar} {totalIncome()}
+                  </p>
+                </div>
+                <div className="expense">
+                  <h2>Total Expense</h2>
+                  <p>
+                    {dollar} {totalExpenses()}
+                  </p>
+                </div>
               </div>
               <div className="balance">
                 <h2>Total Balance</h2>
@@ -93,19 +95,27 @@ function Dashboard() {
           </div>
           <div className="history-con">
             <History />
-            <h2 className="salary-title">
-              Min <span>Salary</span>Max
-            </h2>
-            <div className="salary-item">
-              <p>${Math.min(...incomes.map((item) => item.amount))}</p>
-              <p>${Math.max(...incomes.map((item) => item.amount))}</p>
+            <div className="history-block">
+              <div className="history-labels">
+                <span>Min</span>
+                <span className="center-label">Salary</span>
+                <span>Max</span>
+              </div>
+              <div className="salary-item">
+                <p>${Math.min(...incomes.map((item) => item.amount))}</p>
+                <p>${Math.max(...incomes.map((item) => item.amount))}</p>
+              </div>
             </div>
-            <h2 className="salary-title">
-              Min <span>Expense</span>Max
-            </h2>
-            <div className="salary-item">
-              <p>${Math.min(...expenses.map((item) => item.amount))}</p>
-              <p>${Math.max(...expenses.map((item) => item.amount))}</p>
+            <div className="history-block">
+              <div className="history-labels">
+                <span>Min</span>
+                <span className="center-label">Expense</span>
+                <span>Max</span>
+              </div>
+              <div className="salary-item">
+                <p>${Math.min(...expenses.map((item) => item.amount))}</p>
+                <p>${Math.max(...expenses.map((item) => item.amount))}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -119,21 +129,33 @@ const DashboardStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
     .chart-con {
       grid-column: 1 / 4;
       height: 400px;
+      @media (max-width: 900px) {
+        height: auto;
+      }
       .amount-con {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        flex-direction: column;
         gap: 2rem;
         margin-top: 2rem;
-        .income,
-        .expense {
-          grid-column: span 2;
+        .row {
+          display: flex;
+          gap: 2rem;
+          @media (max-width: 900px) {
+            flex-direction: column;
+            gap: 1rem;
+          }
         }
         .income,
-        .expense,
-        .balance {
+        .expense {
+          flex: 1;
           background: #fcf6f9;
           border: 2px solid #ffffff;
           box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -144,14 +166,16 @@ const DashboardStyled = styled.div`
             font-weight: 700;
           }
         }
-
         .balance {
-          grid-column: 2 / 4;
+          background: #fcf6f9;
+          border: 2px solid #ffffff;
+          box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+          border-radius: 20px;
+          padding: 2rem 1rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          padding: 2rem 1rem;
           h2 {
             font-size: 2rem;
             margin-bottom: 1rem;
@@ -180,19 +204,26 @@ const DashboardStyled = styled.div`
         }
       }
     }
-
     .history-con {
       grid-column: 4 / -1;
-      h2 {
-        margin: 1rem 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      @media (max-width: 900px) {
+        grid-column: auto;
+        order: 2;
       }
-      .salary-title {
+      .history-block {
+        margin-bottom: 1.5rem;
+      }
+      .history-labels {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         font-size: 1.2rem;
-        span {
-          font-size: 1.8rem;
+        margin-bottom: 0.2rem;
+        .center-label {
+          flex: 1;
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: 700;
         }
       }
       .salary-item {
@@ -209,6 +240,16 @@ const DashboardStyled = styled.div`
           font-size: 1.6rem;
         }
       }
+    }
+  }
+  h1,
+  button {
+    @media (max-width: 900px) {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 `;
